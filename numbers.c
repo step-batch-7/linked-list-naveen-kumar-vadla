@@ -25,6 +25,19 @@ void perform_add_to_start(List_ptr list)
   display(list);
 }
 
+void perform_insert_at(List_ptr list)
+{
+  int number, position;
+  read_number("Enter the number you want to insert", &number);
+  read_number("Enter the position where you want to insert", &position);
+  Status status = insert_at(list, number, position);
+  if (status == Failure)
+  {
+    PRINT_STRING("The position you want to insert is invalid!!!");
+  }
+  display(list);
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   switch (choice)
@@ -34,6 +47,9 @@ void perform_user_choice(List_ptr list, char choice)
     break;
   case 'b':
     perform_add_to_start(list);
+    break;
+  case 'c':
+    perform_insert_at(list);
     break;
   case 'm':
     break;
@@ -50,6 +66,7 @@ void display_menu()
   PRINT_STRING("---------");
   PRINT_STRING("(a) add a number to the end of the list");
   PRINT_STRING("(b) add a number to the start of the list");
+  PRINT_STRING("(c) insert a number at a given position in the list");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
 }
