@@ -101,6 +101,17 @@ void perform_remove_first_occurrence(List_ptr list)
   }
 }
 
+void perform_remove_all_occurrences(List_ptr list)
+{
+  int number;
+  read_number("Enter the number you would like to remove all the occurrences", &number);
+  Status status = remove_all_occurrences(list, number);
+  if (status == Failure)
+  {
+    PRINT_STRING("The number you want to remove is not present in the list");
+  }
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
@@ -138,6 +149,10 @@ void perform_user_choice(List_ptr list, char choice)
     perform_remove_first_occurrence(list);
     display(list);
     break;
+  case 'i':
+    perform_remove_all_occurrences(list);
+    display(list);
+    break;
   case 'j':
     clear_list(list);
     display(list);
@@ -171,6 +186,7 @@ void display_menu()
   PRINT_STRING("(f) remove a number from the end of the list");
   PRINT_STRING("(g) remove a number from a given position in the list");
   PRINT_STRING("(h) remove first occurrence of a number");
+  PRINT_STRING("(i) remove all occurrences of a number");
   PRINT_STRING("(j) clear the whole list");
   PRINT_STRING("(k) check if a number exists in the list");
   PRINT_STRING("(l) display the list of numbers");

@@ -32,6 +32,7 @@ Status add_to_start(List_ptr, int value);
 Status insert_at(List_ptr, int value, int position);
 Status add_unique(List_ptr, int value);
 
+Node_ptr get_node_at(List_ptr list, int position);
 void display(List_ptr);
 int search_node(List_ptr list, int value);
 

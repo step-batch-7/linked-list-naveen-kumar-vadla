@@ -18,6 +18,7 @@ void perform_remove_from_end(List_ptr list);
 void perform_remove_at(List_ptr list);
 
 void perform_remove_first_occurrence(List_ptr list);
+void perform_remove_all_occurrences(List_ptr list);
 
 void perform_search(List_ptr list);
 

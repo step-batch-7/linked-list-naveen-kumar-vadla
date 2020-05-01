@@ -198,3 +198,17 @@ Status remove_first_occurrence(List_ptr list, int value)
   }
   return remove_at(list, index);
 }
+
+Status remove_all_occurrences(List_ptr list, int value)
+{
+  Status status = remove_first_occurrence(list, value);
+  if (status == Failure)
+  {
+    return Failure;
+  }
+  while (status == Success)
+  {
+    status = remove_first_occurrence(list, value);
+  }
+  return Success;
+}
