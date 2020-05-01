@@ -50,6 +50,16 @@ void perform_add_unique(List_ptr list)
   display(list);
 }
 
+void perform_remove_from_start(List_ptr list)
+{
+  Status status = remove_from_start(list);
+  if (status == Failure)
+  {
+    PRINT_STRING("The list is empty");
+  }
+  display(list);
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
@@ -66,6 +76,9 @@ void perform_user_choice(List_ptr list, char choice)
     break;
   case 'd':
     perform_add_unique(list);
+    break;
+  case 'e':
+    perform_remove_from_start(list);
     break;
   case 'm':
     break;
@@ -84,6 +97,7 @@ void display_menu()
   PRINT_STRING("(b) add a number to the start of the list");
   PRINT_STRING("(c) insert a number at a given position in the list");
   PRINT_STRING("(d) add a unique item on the list at the end");
+  PRINT_STRING("(e) remove a number from the beginning of the list");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
 }
