@@ -14,7 +14,6 @@ void perform_add_to_end(List_ptr list)
   int number;
   read_number("Enter the number you want to insert at the end", &number);
   Status status = add_to_end(list, number);
-  display(list);
 }
 
 void perform_add_to_start(List_ptr list)
@@ -22,7 +21,6 @@ void perform_add_to_start(List_ptr list)
   int number;
   read_number("Enter the number you want to insert at the beginning", &number);
   Status status = add_to_start(list, number);
-  display(list);
 }
 
 void perform_insert_at(List_ptr list)
@@ -35,7 +33,6 @@ void perform_insert_at(List_ptr list)
   {
     PRINT_STRING("The position you want to insert is invalid");
   }
-  display(list);
 }
 
 void perform_add_unique(List_ptr list)
@@ -47,7 +44,6 @@ void perform_add_unique(List_ptr list)
   {
     PRINT_STRING("The number you entered is already present at the end of the list");
   }
-  display(list);
 }
 
 void perform_remove_from_start(List_ptr list)
@@ -57,7 +53,6 @@ void perform_remove_from_start(List_ptr list)
   {
     PRINT_STRING("The list is empty");
   }
-  display(list);
 }
 
 void perform_remove_from_end(List_ptr list)
@@ -67,7 +62,6 @@ void perform_remove_from_end(List_ptr list)
   {
     PRINT_STRING("The list is empty");
   }
-  display(list);
 }
 
 void perform_remove_at(List_ptr list)
@@ -79,7 +73,6 @@ void perform_remove_at(List_ptr list)
   {
     PRINT_STRING("The position you want to remove is invalid");
   }
-  display(list);
 }
 
 void perform_user_choice(List_ptr list, char choice)
@@ -89,24 +82,34 @@ void perform_user_choice(List_ptr list, char choice)
   {
   case 'a':
     perform_add_to_end(list);
+    display(list);
     break;
   case 'b':
     perform_add_to_start(list);
+    display(list);
     break;
   case 'c':
     perform_insert_at(list);
+    display(list);
     break;
   case 'd':
     perform_add_unique(list);
+    display(list);
     break;
   case 'e':
     perform_remove_from_start(list);
+    display(list);
     break;
   case 'f':
     perform_remove_from_end(list);
+    display(list);
     break;
   case 'g':
     perform_remove_at(list);
+    display(list);
+    break;
+  case 'l':
+    display(list);
     break;
   case 'm':
     break;
@@ -128,6 +131,7 @@ void display_menu()
   PRINT_STRING("(e) remove a number from the beginning of the list");
   PRINT_STRING("(f) remove a number from the end of the list");
   PRINT_STRING("(g) remove a number from a given position in the list");
+  PRINT_STRING("(l) display the list of numbers");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
 }
