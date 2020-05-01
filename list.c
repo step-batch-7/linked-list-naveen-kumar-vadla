@@ -156,3 +156,18 @@ Status remove_at(List_ptr list, int position)
   free(temp);
   return Success;
 }
+
+Status clear_list(List_ptr list)
+{
+  while (list->count > 0)
+  {
+    remove_from_end(list);
+  }
+  return Success;
+}
+
+void destroy_list(List_ptr list)
+{
+  clear_list(list);
+  free(list);
+}

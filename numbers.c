@@ -108,10 +108,15 @@ void perform_user_choice(List_ptr list, char choice)
     perform_remove_at(list);
     display(list);
     break;
+  case 'j':
+    clear_list(list);
+    display(list);
+    break;
   case 'l':
     display(list);
     break;
   case 'm':
+    destroy_list(list);
     break;
   default:
     PRINT_STRING("Invalid Choice!!!");
@@ -131,6 +136,7 @@ void display_menu()
   PRINT_STRING("(e) remove a number from the beginning of the list");
   PRINT_STRING("(f) remove a number from the end of the list");
   PRINT_STRING("(g) remove a number from a given position in the list");
+  PRINT_STRING("(j) clear the whole list");
   PRINT_STRING("(l) display the list of numbers");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
