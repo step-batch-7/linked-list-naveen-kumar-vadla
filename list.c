@@ -171,3 +171,19 @@ void destroy_list(List_ptr list)
   clear_list(list);
   free(list);
 }
+
+int search_node(List_ptr list, int value)
+{
+  int index = -1;
+  Node_ptr p_walk = list->head;
+  for (int i = 1; i <= list->count; i++)
+  {
+    if (p_walk->value == value)
+    {
+      index = i;
+      break;
+    }
+    p_walk = p_walk->next;
+  }
+  return index;
+}

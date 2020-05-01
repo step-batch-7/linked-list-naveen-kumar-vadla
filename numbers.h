@@ -17,4 +17,6 @@ void perform_remove_from_start(List_ptr list);
 void perform_remove_from_end(List_ptr list);
 void perform_remove_at(List_ptr list);
 
+void perform_search(List_ptr list);
+
 #endif

@@ -75,6 +75,21 @@ void perform_remove_at(List_ptr list)
   }
 }
 
+void perform_search(List_ptr list)
+{
+  int number;
+  read_number("Enter the number you would like to search for?", &number);
+  int result = search_node(list, number);
+  if (result == -1)
+  {
+    printf("%d is not present in the list\n", number);
+  }
+  else
+  {
+    printf("%d is present in the list at position %d\n", number, result);
+  }
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
@@ -112,6 +127,10 @@ void perform_user_choice(List_ptr list, char choice)
     clear_list(list);
     display(list);
     break;
+  case 'k':
+    perform_search(list);
+    display(list);
+    break;
   case 'l':
     display(list);
     break;
@@ -137,6 +156,7 @@ void display_menu()
   PRINT_STRING("(f) remove a number from the end of the list");
   PRINT_STRING("(g) remove a number from a given position in the list");
   PRINT_STRING("(j) clear the whole list");
+  PRINT_STRING("(k) check if a number exists in the list");
   PRINT_STRING("(l) display the list of numbers");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
