@@ -90,6 +90,17 @@ void perform_search(List_ptr list)
   }
 }
 
+void perform_remove_first_occurrence(List_ptr list)
+{
+  int number;
+  read_number("Enter the number you would like to remove the first occurrence", &number);
+  Status status = remove_first_occurrence(list, number);
+  if (status == Failure)
+  {
+    PRINT_STRING("The number you want to remove is not present in the list");
+  }
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
@@ -121,6 +132,10 @@ void perform_user_choice(List_ptr list, char choice)
     break;
   case 'g':
     perform_remove_at(list);
+    display(list);
+    break;
+  case 'h':
+    perform_remove_first_occurrence(list);
     display(list);
     break;
   case 'j':
@@ -155,6 +170,7 @@ void display_menu()
   PRINT_STRING("(e) remove a number from the beginning of the list");
   PRINT_STRING("(f) remove a number from the end of the list");
   PRINT_STRING("(g) remove a number from a given position in the list");
+  PRINT_STRING("(h) remove first occurrence of a number");
   PRINT_STRING("(j) clear the whole list");
   PRINT_STRING("(k) check if a number exists in the list");
   PRINT_STRING("(l) display the list of numbers");

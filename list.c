@@ -188,3 +188,13 @@ int search_node(List_ptr list, int value)
   }
   return index;
 }
+
+Status remove_first_occurrence(List_ptr list, int value)
+{
+  int index = search_node(list, value);
+  if (index == -1)
+  {
+    return Failure;
+  }
+  return remove_at(list, index);
+}
