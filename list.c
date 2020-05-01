@@ -62,12 +62,12 @@ Status add_to_start(List_ptr list, int value)
 
 Node_ptr get_node_at(List_ptr list, int position)
 {
-  if (position < 1 || position > list->count)
+  if (position < 0 || position > list->count - 1)
   {
     return NULL;
   }
   Node_ptr p_walk = list->head;
-  int count = 1;
+  int count = 0;
   while (count < position)
   {
     p_walk = p_walk->next;
@@ -78,15 +78,15 @@ Node_ptr get_node_at(List_ptr list, int position)
 
 Status insert_at(List_ptr list, int value, int position)
 {
-  if (position == 1)
+  if (position == 0)
   {
     return add_to_start(list, value);
   }
-  if (position == list->count + 1)
+  if (position == list->count)
   {
     return add_to_end(list, value);
   }
-  if (position > list->count + 1)
+  if (position > list->count)
   {
     return Failure;
   }
@@ -126,7 +126,7 @@ Status remove_from_end(List_ptr list)
   {
     return remove_from_start(list);
   }
-  Node_ptr before_node = get_node_at(list, list->count - 1);
+  Node_ptr before_node = get_node_at(list, list->count - 2);
   Node_ptr temp = before_node->next;
   before_node->next = NULL;
   list->last = before_node;
@@ -137,15 +137,16 @@ Status remove_from_end(List_ptr list)
 
 Status remove_at(List_ptr list, int position)
 {
-  if (position == 1)
+  if (position == 0)
   {
     return remove_from_start(list);
   }
-  if (position == list->count)
+  if (position == list->count - 1)
   {
+    printf("%d %d", position, list->count);
     return remove_from_end(list);
   }
-  if (position > list->count)
+  if (position >= list->count)
   {
     return Failure;
   }
@@ -176,7 +177,7 @@ int search_node(List_ptr list, int value)
 {
   int index = -1;
   Node_ptr p_walk = list->head;
-  for (int i = 1; i <= list->count; i++)
+  for (int i = 0; i < list->count; i++)
   {
     if (p_walk->value == value)
     {
