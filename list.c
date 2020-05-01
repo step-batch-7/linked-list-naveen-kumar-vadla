@@ -97,3 +97,12 @@ Status insert_at(List_ptr list, int value, int position)
   list->count++;
   return Success;
 }
+
+Status add_unique(List_ptr list, int value)
+{
+  if (list->last->value == value)
+  {
+    return Failure;
+  }
+  return add_to_end(list, value);
+}

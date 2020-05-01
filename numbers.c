@@ -33,13 +33,26 @@ void perform_insert_at(List_ptr list)
   Status status = insert_at(list, number, position);
   if (status == Failure)
   {
-    PRINT_STRING("The position you want to insert is invalid!!!");
+    PRINT_STRING("The position you want to insert is invalid");
+  }
+  display(list);
+}
+
+void perform_add_unique(List_ptr list)
+{
+  int number;
+  read_number("Enter the unique number you want to insert at the end", &number);
+  Status status = add_unique(list, number);
+  if (status == Failure)
+  {
+    PRINT_STRING("The number you entered is already present at the end of the list");
   }
   display(list);
 }
 
 void perform_user_choice(List_ptr list, char choice)
 {
+  printf("\n\n");
   switch (choice)
   {
   case 'a':
@@ -50,6 +63,9 @@ void perform_user_choice(List_ptr list, char choice)
     break;
   case 'c':
     perform_insert_at(list);
+    break;
+  case 'd':
+    perform_add_unique(list);
     break;
   case 'm':
     break;
@@ -67,6 +83,7 @@ void display_menu()
   PRINT_STRING("(a) add a number to the end of the list");
   PRINT_STRING("(b) add a number to the start of the list");
   PRINT_STRING("(c) insert a number at a given position in the list");
+  PRINT_STRING("(d) add a unique item on the list at the end");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
 }
