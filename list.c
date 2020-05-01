@@ -134,3 +134,25 @@ Status remove_from_end(List_ptr list)
   free(temp);
   return Success;
 }
+
+Status remove_at(List_ptr list, int position)
+{
+  if (position == 1)
+  {
+    return remove_from_start(list);
+  }
+  if (position == list->count)
+  {
+    return remove_from_end(list);
+  }
+  if (position > list->count)
+  {
+    return Failure;
+  }
+  Node_ptr before_node = get_node_at(list, position - 1);
+  Node_ptr temp = before_node->next;
+  before_node->next = temp->next;
+  list->count--;
+  free(temp);
+  return Success;
+}

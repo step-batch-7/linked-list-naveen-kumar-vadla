@@ -70,6 +70,18 @@ void perform_remove_from_end(List_ptr list)
   display(list);
 }
 
+void perform_remove_at(List_ptr list)
+{
+  int position;
+  read_number("Enter the position which you want to remove", &position);
+  Status status = remove_at(list, position);
+  if (status == Failure)
+  {
+    PRINT_STRING("The position you want to remove is invalid");
+  }
+  display(list);
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
@@ -93,6 +105,9 @@ void perform_user_choice(List_ptr list, char choice)
   case 'f':
     perform_remove_from_end(list);
     break;
+  case 'g':
+    perform_remove_at(list);
+    break;
   case 'm':
     break;
   default:
@@ -112,6 +127,7 @@ void display_menu()
   PRINT_STRING("(d) add a unique item on the list at the end");
   PRINT_STRING("(e) remove a number from the beginning of the list");
   PRINT_STRING("(f) remove a number from the end of the list");
+  PRINT_STRING("(g) remove a number from a given position in the list");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
 }
