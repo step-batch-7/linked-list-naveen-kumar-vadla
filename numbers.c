@@ -17,12 +17,23 @@ void perform_add_to_end(List_ptr list)
   display(list);
 }
 
+void perform_add_to_start(List_ptr list)
+{
+  int number;
+  read_number("Enter the number you want to insert at the beginning", &number);
+  Status status = add_to_start(list, number);
+  display(list);
+}
+
 void perform_user_choice(List_ptr list, char choice)
 {
   switch (choice)
   {
   case 'a':
     perform_add_to_end(list);
+    break;
+  case 'b':
+    perform_add_to_start(list);
     break;
   case 'm':
     break;
@@ -38,6 +49,7 @@ void display_menu()
   PRINT_STRING("Main Menu");
   PRINT_STRING("---------");
   PRINT_STRING("(a) add a number to the end of the list");
+  PRINT_STRING("(b) add a number to the start of the list");
   PRINT_STRING("(m) exit");
   PRINT_STRING("Please enter the alphabet of the operation you would like to perform");
 }

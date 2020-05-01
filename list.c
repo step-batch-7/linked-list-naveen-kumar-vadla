@@ -46,3 +46,16 @@ Status add_to_end(List_ptr list, int value)
   list->count++;
   return Success;
 }
+
+Status add_to_start(List_ptr list, int value)
+{
+  Node_ptr new_node = create_node(value);
+  if (list->head == NULL)
+  {
+    return add_to_end(list, value);
+  }
+  new_node->next = list->head;
+  list->head = new_node;
+  list->count++;
+  return Success;
+}
