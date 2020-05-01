@@ -119,3 +119,18 @@ Status remove_from_start(List_ptr list)
   free(head);
   return Success;
 }
+
+Status remove_from_end(List_ptr list)
+{
+  if (list->count <= 1)
+  {
+    return remove_from_start(list);
+  }
+  Node_ptr before_node = get_node_at(list, list->count - 1);
+  Node_ptr temp = before_node->next;
+  before_node->next = NULL;
+  list->last = before_node;
+  list->count--;
+  free(temp);
+  return Success;
+}
