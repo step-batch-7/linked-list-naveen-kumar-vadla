@@ -160,6 +160,10 @@ Status remove_at(List_ptr list, int position)
 
 Status clear_list(List_ptr list)
 {
+  if (list->count == 0)
+  {
+    return Failure;
+  }
   while (list->count > 0)
   {
     remove_from_end(list);

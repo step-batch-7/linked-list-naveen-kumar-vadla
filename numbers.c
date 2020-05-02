@@ -111,7 +111,14 @@ void perform_remove_all_occurrences(List_ptr list)
     PRINT_STRING("The number you want to remove is not present in the list");
   }
 }
-
+void perform_clear_list(List_ptr list)
+{
+  Status Status = clear_list(list);
+  if (Status == Failure)
+  {
+    PRINT_STRING("The list you are trying to clear is empty");
+  }
+}
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
@@ -154,7 +161,7 @@ void perform_user_choice(List_ptr list, char choice)
     display(list);
     break;
   case 'j':
-    clear_list(list);
+    perform_clear_list(list);
     display(list);
     break;
   case 'k':
