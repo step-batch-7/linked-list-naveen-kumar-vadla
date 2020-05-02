@@ -4,7 +4,8 @@
 typedef enum
 {
   Failure,
-  Success
+  Success,
+  Memory_Not_Available
 } Status;
 
 typedef struct node

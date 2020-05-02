@@ -4,14 +4,22 @@
 
 void display_status(Status status, char *error_message)
 {
+  char *message = "Invalid status.";
+  char *success_message = "Done.";
+  char *memory_unavailable_message = "Memory not available.\nTry again later.";
+  if (status == Success)
+  {
+    message = success_message;
+  }
   if (status == Failure)
   {
-    PRINT_STRING(error_message);
+    message = error_message;
   }
-  else
+  if (status == Memory_Not_Available)
   {
-    PRINT_STRING("Done.");
+    message = memory_unavailable_message;
   }
+  PRINT_STRING(message);
 }
 
 void read_number(char *message, int *value)
@@ -196,6 +204,11 @@ void display_menu()
 int main(void)
 {
   List_ptr list = create_list();
+  if (list == NULL)
+  {
+    display_status(Memory_Not_Available, "");
+    return 0;
+  }
   char choice;
   do
   {

@@ -5,17 +5,23 @@
 List_ptr create_list(void)
 {
   List_ptr list = malloc(sizeof(List));
-  list->head = NULL;
-  list->last = NULL;
-  list->count = 0;
+  if (list != NULL)
+  {
+    list->head = NULL;
+    list->last = NULL;
+    list->count = 0;
+  }
   return list;
 }
 
 Node_ptr create_node(int value)
 {
   Node_ptr new_node = malloc(sizeof(Node));
-  new_node->value = value;
-  new_node->next = NULL;
+  if (new_node != NULL)
+  {
+    new_node->value = value;
+    new_node->next = NULL;
+  }
   return new_node;
 }
 
@@ -34,6 +40,10 @@ void display(List_ptr list)
 Status add_to_end(List_ptr list, int value)
 {
   Node_ptr new_node = create_node(value);
+  if (new_node == NULL)
+  {
+    return Memory_Not_Available;
+  }
   if (list->head == NULL)
   {
     list->head = new_node;
@@ -50,6 +60,10 @@ Status add_to_end(List_ptr list, int value)
 Status add_to_start(List_ptr list, int value)
 {
   Node_ptr new_node = create_node(value);
+  if (new_node == NULL)
+  {
+    return Memory_Not_Available;
+  }
   if (list->head == NULL)
   {
     return add_to_end(list, value);
@@ -91,6 +105,10 @@ Status insert_at(List_ptr list, int value, int position)
     return Failure;
   }
   Node_ptr new_node = create_node(value);
+  if (new_node == NULL)
+  {
+    return Memory_Not_Available;
+  }
   Node_ptr before_node = get_node_at(list, position - 1);
   new_node->next = before_node->next;
   before_node->next = new_node;
