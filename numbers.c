@@ -2,6 +2,18 @@
 #include "list.h"
 #include "numbers.h"
 
+void display_status(Status status, char *error_message)
+{
+  if (status == Failure)
+  {
+    PRINT_STRING(error_message);
+  }
+  else
+  {
+    PRINT_STRING("Done.");
+  }
+}
+
 void read_number(char *message, int *value)
 {
   PRINT_STRING(message);
@@ -14,6 +26,7 @@ void perform_add_to_end(List_ptr list)
   int number;
   read_number("Enter the number you want to insert at the end", &number);
   Status status = add_to_end(list, number);
+  display_status(status, "Failed to add the number to the end of the list.");
 }
 
 void perform_add_to_start(List_ptr list)
@@ -21,6 +34,7 @@ void perform_add_to_start(List_ptr list)
   int number;
   read_number("Enter the number you want to insert at the beginning", &number);
   Status status = add_to_start(list, number);
+  display_status(status, "Failed to add the number to the start of the list.");
 }
 
 void perform_insert_at(List_ptr list)
@@ -29,10 +43,7 @@ void perform_insert_at(List_ptr list)
   read_number("Enter the number you want to insert", &number);
   read_number("Enter the position where you want to insert", &position);
   Status status = insert_at(list, number, position);
-  if (status == Failure)
-  {
-    PRINT_STRING("The position you want to insert is invalid");
-  }
+  display_status(status, "The position you want to insert is invalid.");
 }
 
 void perform_add_unique(List_ptr list)
@@ -40,28 +51,19 @@ void perform_add_unique(List_ptr list)
   int number;
   read_number("Enter the unique number you want to insert at the end", &number);
   Status status = add_unique(list, number);
-  if (status == Failure)
-  {
-    PRINT_STRING("The number you entered is already present at the end of the list");
-  }
+  display_status(status, "The number you entered is already present at the end of the list.");
 }
 
 void perform_remove_from_start(List_ptr list)
 {
   Status status = remove_from_start(list);
-  if (status == Failure)
-  {
-    PRINT_STRING("The list is empty");
-  }
+  display_status(status, "The list is empty.");
 }
 
 void perform_remove_from_end(List_ptr list)
 {
   Status status = remove_from_end(list);
-  if (status == Failure)
-  {
-    PRINT_STRING("The list is empty");
-  }
+  display_status(status, "The list is empty.");
 }
 
 void perform_remove_at(List_ptr list)
@@ -69,10 +71,7 @@ void perform_remove_at(List_ptr list)
   int position;
   read_number("Enter the position which you want to remove", &position);
   Status status = remove_at(list, position);
-  if (status == Failure)
-  {
-    PRINT_STRING("The position you want to remove is invalid");
-  }
+  display_status(status, "The position you want to remove is invalid.");
 }
 
 void perform_search(List_ptr list)
@@ -95,10 +94,7 @@ void perform_remove_first_occurrence(List_ptr list)
   int number;
   read_number("Enter the number you would like to remove the first occurrence", &number);
   Status status = remove_first_occurrence(list, number);
-  if (status == Failure)
-  {
-    PRINT_STRING("The number you want to remove is not present in the list");
-  }
+  display_status(status, "The number you want to remove is not present in the list.");
 }
 
 void perform_remove_all_occurrences(List_ptr list)
@@ -106,19 +102,15 @@ void perform_remove_all_occurrences(List_ptr list)
   int number;
   read_number("Enter the number you would like to remove all the occurrences", &number);
   Status status = remove_all_occurrences(list, number);
-  if (status == Failure)
-  {
-    PRINT_STRING("The number you want to remove is not present in the list");
-  }
+  display_status(status, "The number you want to remove is not present in the list.");
 }
+
 void perform_clear_list(List_ptr list)
 {
-  Status Status = clear_list(list);
-  if (Status == Failure)
-  {
-    PRINT_STRING("The list you are trying to clear is empty");
-  }
+  Status status = clear_list(list);
+  display_status(status, "The list you are trying to clear is empty");
 }
+
 void perform_user_choice(List_ptr list, char choice)
 {
   printf("\n\n");
