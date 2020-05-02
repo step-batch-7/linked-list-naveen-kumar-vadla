@@ -40,18 +40,16 @@ void display(List_ptr list)
 Status add_to_end(List_ptr list, int value)
 {
   Node_ptr new_node = create_node(value);
+  Node_ptr *ptr_to_set = &list->head;
   if (new_node == NULL)
   {
     return Memory_Not_Available;
   }
-  if (list->head == NULL)
+  if (list->head != NULL)
   {
-    list->head = new_node;
+    ptr_to_set = &list->last->next;
   }
-  else
-  {
-    list->last->next = new_node;
-  }
+  (*ptr_to_set) = new_node;
   list->last = new_node;
   list->count++;
   return Success;
@@ -81,11 +79,9 @@ Node_ptr get_node_at(List_ptr list, int position)
     return NULL;
   }
   Node_ptr p_walk = list->head;
-  int count = 0;
-  while (count < position)
+  for (int i = 0; i < position; i++)
   {
     p_walk = p_walk->next;
-    count++;
   }
   return p_walk;
 }
@@ -161,7 +157,6 @@ Status remove_at(List_ptr list, int position)
   }
   if (position == list->count - 1)
   {
-    printf("%d %d", position, list->count);
     return remove_from_end(list);
   }
   if (position >= list->count)
