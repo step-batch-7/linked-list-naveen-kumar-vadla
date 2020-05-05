@@ -74,10 +74,6 @@ Status add_to_start(List_ptr list, int value)
 
 Node_ptr get_node_at(List_ptr list, int position)
 {
-  if (position < 0 || position > list->count - 1)
-  {
-    return NULL;
-  }
   Node_ptr p_walk = list->head;
   for (int i = 0; i < position; i++)
   {
@@ -96,7 +92,7 @@ Status insert_at(List_ptr list, int value, int position)
   {
     return add_to_end(list, value);
   }
-  if (position > list->count)
+  if (position < 0 || position > list->count)
   {
     return Failure;
   }
@@ -114,7 +110,8 @@ Status insert_at(List_ptr list, int value, int position)
 
 Status add_unique(List_ptr list, int value)
 {
-  if (list->last->value == value)
+  int index = search_node(list, value);
+  if (index != -1)
   {
     return Failure;
   }
@@ -159,7 +156,7 @@ Status remove_at(List_ptr list, int position)
   {
     return remove_from_end(list);
   }
-  if (position >= list->count)
+  if (position < 0 || position >= list->count)
   {
     return Failure;
   }

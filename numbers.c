@@ -60,7 +60,7 @@ void perform_add_unique(List_ptr list)
   int number;
   read_number("Enter the unique number you want to insert at the end", &number);
   Status status = add_unique(list, number);
-  display_status(status, "The number you entered is already present at the end of the list.");
+  display_status(status, "The number you entered is already present in the list.");
 }
 
 void perform_remove_from_start(List_ptr list)
