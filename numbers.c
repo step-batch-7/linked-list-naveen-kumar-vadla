@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "list.h"
 #include "numbers.h"
 
@@ -87,14 +88,19 @@ void perform_search(List_ptr list)
   int number;
   read_number("Enter the number you would like to search for?", &number);
   int result = search_node(list, number);
+  Status status = Success;
+  char *message = "Done.";
   if (result == -1)
   {
+    status = Failure;
+    message = "Failed.";
     printf("%d is not present in the list\n", number);
   }
   else
   {
     printf("%d is present in the list at position %d\n", number, result);
   }
+  display_status(status, message);
 }
 
 void perform_remove_first_occurrence(List_ptr list)
@@ -121,7 +127,7 @@ void perform_clear_list(List_ptr list)
 
 void perform_user_choice(List_ptr list, char choice)
 {
-  printf("\n\n");
+  system("clear");
   switch (choice)
   {
   case 'a':
