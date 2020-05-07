@@ -16,5 +16,6 @@ int assert(int actual, int expected);
 void display_pass_or_fail(int status);
 
 void test_clear_list(List_ptr list);
+void test_search_node(List_ptr list);
 
 #endif

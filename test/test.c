@@ -29,6 +29,23 @@ void test_clear_list(List_ptr list)
   PRINT_STRING("should not clear the list if it is an empty list");
 }
 
+void test_search_node(List_ptr list)
+{
+  add_to_end(list, 1);
+
+  PRINT_STRING("\nsearch_node");
+
+  int status = assert(search_node(list, 1), 0);
+  display_pass_or_fail(status);
+  PRINT_STRING("should give the position if the item is present in the list");
+
+  status = assert(search_node(list, 2), -1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should give -1 if the item is not present in the list");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -39,6 +56,7 @@ int main(void)
   }
 
   test_clear_list(list);
-  
+  test_search_node(list);
+
   return 0;
 }
