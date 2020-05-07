@@ -10,6 +10,7 @@ int assert(int actual, int expected)
 void display_pass_or_fail(int status)
 {
   status ? printf(PASS) : printf(FAIL);
+  status ? PASSING_TESTS++ : FAILING_TESTS++;
 }
 
 void test_clear_list(List_ptr list)
@@ -294,6 +295,9 @@ int main(void)
 
   test_remove_first_occurrence(list);
   test_remove_all_occurrences(list);
-  
+
+  printf(GREEN "\n%d passing" RESET, PASSING_TESTS);
+  printf(RED "\n%d failing\n" RESET, FAILING_TESTS);
+
   return 0;
 }

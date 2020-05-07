@@ -12,6 +12,9 @@
 #define PASS GREEN "\u2714 " RESET
 #define FAIL RED "\u2718 " RESET
 
+int PASSING_TESTS = 0;
+int FAILING_TESTS = 0;
+
 int assert(int actual, int expected);
 void display_pass_or_fail(int status);
 
