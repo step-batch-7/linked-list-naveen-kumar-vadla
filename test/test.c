@@ -247,6 +247,30 @@ void test_remove_first_occurrence(List_ptr list)
   clear_list(list);
 }
 
+void test_remove_all_occurrences(List_ptr list)
+{
+  add_to_end(list, 1);
+  add_to_end(list, 2);
+  add_to_end(list, 3);
+  add_to_end(list, 1);
+
+  PRINT_STRING("\nremove_all_occurrences");
+
+  int status = assert(remove_all_occurrences(list, 1), Success);
+  status = status && assert(search_node(list, 1), -1);
+  status = status && assert(list->count, 2);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove all occurrences of the given number in the list if exists");
+
+  status = assert(remove_all_occurrences(list, 1), Failure);
+  status = status && assert(search_node(list, 1), -1);
+  status = status && assert(list->count, 2);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not remove all occurrences of the given number in the list if not exists");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -269,6 +293,7 @@ int main(void)
   test_remove_at(list);
 
   test_remove_first_occurrence(list);
+  test_remove_all_occurrences(list);
   
   return 0;
 }
