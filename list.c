@@ -64,7 +64,7 @@ Status add_to_start(List_ptr list, int value)
   }
   if (list->head == NULL)
   {
-    return add_to_end(list, value);
+    list->last = new_node;
   }
   new_node->next = list->head;
   list->head = new_node;
@@ -88,10 +88,6 @@ Status insert_at(List_ptr list, int value, int position)
   {
     return add_to_start(list, value);
   }
-  if (position == list->count)
-  {
-    return add_to_end(list, value);
-  }
   if (position < 0 || position > list->count)
   {
     return Failure;
@@ -100,6 +96,10 @@ Status insert_at(List_ptr list, int value, int position)
   if (new_node == NULL)
   {
     return Memory_Not_Available;
+  }
+  if (position == list->count)
+  {
+    list->last = new_node;
   }
   Node_ptr before_node = get_node_at(list, position - 1);
   new_node->next = before_node->next;
@@ -152,15 +152,15 @@ Status remove_at(List_ptr list, int position)
   {
     return remove_from_start(list);
   }
-  if (position == list->count - 1)
-  {
-    return remove_from_end(list);
-  }
   if (position < 0 || position >= list->count)
   {
     return Failure;
   }
   Node_ptr before_node = get_node_at(list, position - 1);
+  if (position == list->count - 1)
+  {
+    list->last = before_node;
+  }
   Node_ptr temp = before_node->next;
   before_node->next = temp->next;
   list->count--;
@@ -170,15 +170,12 @@ Status remove_at(List_ptr list, int position)
 
 Status clear_list(List_ptr list)
 {
-  if (list->count == 0)
-  {
-    return Failure;
-  }
+  Status status = Failure;
   while (list->count > 0)
   {
-    remove_from_end(list);
+    status = remove_from_end(list);
   }
-  return Success;
+  return status;
 }
 
 void destroy_list(List_ptr list)
