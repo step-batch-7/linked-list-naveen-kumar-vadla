@@ -25,5 +25,6 @@ void test_insert_at(List_ptr list);
 
 void test_remove_from_end(List_ptr list);
 void test_remove_from_start(List_ptr list);
+void test_remove_at(List_ptr list);
 
 #endif

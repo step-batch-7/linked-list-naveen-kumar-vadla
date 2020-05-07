@@ -187,6 +187,44 @@ void test_remove_from_start(List_ptr list)
   clear_list(list);
 }
 
+void test_remove_at(List_ptr list)
+{
+  add_to_end(list, 1);
+  add_to_end(list, 2);
+  add_to_end(list, 3);
+  add_to_end(list, 4);
+  add_to_end(list, 5);
+
+  PRINT_STRING("\nremove_at");
+
+  int status = assert(remove_at(list, 4), Success);
+  status = status && assert(list->count, 4);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove the given number at the end of the list");
+
+  status = assert(remove_at(list, 0), Success);
+  status = status && assert(list->count, 3);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove the given number at the beginning of the list");
+
+  status = assert(remove_at(list, 1), Success);
+  status = status && assert(list->count, 2);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove the given number at the given position of the list");
+
+  status = assert(remove_at(list, 9), Failure);
+  status = status && assert(list->count, 2);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not remove the given number if the given position is below 0");
+
+  status = assert(remove_at(list, -9), Failure);
+  status = status && assert(list->count, 2);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not remove the given number if the given position is above list count");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -206,6 +244,7 @@ int main(void)
 
   test_remove_from_end(list);
   test_remove_from_start(list);
-  
+  test_remove_at(list);
+
   return 0;
 }
