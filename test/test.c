@@ -225,6 +225,28 @@ void test_remove_at(List_ptr list)
   clear_list(list);
 }
 
+void test_remove_first_occurrence(List_ptr list)
+{
+  add_to_end(list, 1);
+  add_to_end(list, 2);
+
+  PRINT_STRING("\nremove_first_occurrence");
+
+  int status = assert(remove_first_occurrence(list, 1), Success);
+  status = status && assert(search_node(list, 1), -1);
+  status = status && assert(list->count, 1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove first occurrence of the given number in the list if exists");
+
+  status = assert(remove_first_occurrence(list, 1), Failure);
+  status = status && assert(search_node(list, 1), -1);
+  status = status && assert(list->count, 1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not remove first occurrence of the given number in the list if not exists");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -246,5 +268,7 @@ int main(void)
   test_remove_from_start(list);
   test_remove_at(list);
 
+  test_remove_first_occurrence(list);
+  
   return 0;
 }
