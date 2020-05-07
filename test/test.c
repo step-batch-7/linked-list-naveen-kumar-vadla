@@ -143,6 +143,31 @@ void test_insert_at(List_ptr list)
   clear_list(list);
 }
 
+void test_remove_from_end(List_ptr list)
+{
+  add_to_end(list, 1);
+  add_to_end(list, 2);
+
+  PRINT_STRING("\nremove_from_end");
+
+  int status = assert(remove_from_end(list), Success);
+  status = status && assert(list->count, 1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove the last item from the list");
+
+  status = assert(remove_from_end(list), Success);
+  status = status && assert(list->count, 0);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove the first item from the list if there is only one item");
+
+  status = assert(remove_from_end(list), Failure);
+  status = status && assert(list->count, 0);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not remove the item from the list if the list is empty");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -160,5 +185,7 @@ int main(void)
   test_add_unique(list);
   test_insert_at(list);
 
+  test_remove_from_end(list);
+  
   return 0;
 }
