@@ -168,6 +168,25 @@ void test_remove_from_end(List_ptr list)
   clear_list(list);
 }
 
+void test_remove_from_start(List_ptr list)
+{
+  add_to_end(list, 1);
+
+  PRINT_STRING("\nremove_from_start");
+
+  int status = assert(remove_from_end(list), Success);
+  status = status && assert(list->count, 0);
+  display_pass_or_fail(status);
+  PRINT_STRING("should remove the first item from the list");
+
+  status = assert(remove_from_end(list), Failure);
+  status = status && assert(list->count, 0);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not remove the item from the list if the list is empty");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -186,6 +205,7 @@ int main(void)
   test_insert_at(list);
 
   test_remove_from_end(list);
+  test_remove_from_start(list);
   
   return 0;
 }
