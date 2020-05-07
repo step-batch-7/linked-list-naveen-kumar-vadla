@@ -19,5 +19,6 @@ void test_clear_list(List_ptr list);
 void test_search_node(List_ptr list);
 
 void test_add_to_end(List_ptr list);
+void test_add_to_start(List_ptr list);
 
 #endif
