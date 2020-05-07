@@ -46,6 +46,25 @@ void test_search_node(List_ptr list)
   clear_list(list);
 }
 
+void test_add_to_end(List_ptr list)
+{
+  PRINT_STRING("\nadd_to_end");
+
+  int status = assert(add_to_end(list, 1), Success);
+  status = status && assert(search_node(list, 1), 0);
+  status = status && assert(list->count, 1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should add the given number at the beginning if list is empty of the list");
+
+  status = assert(add_to_end(list, 2), Success);
+  status = status && assert(search_node(list, 2), 1);
+  status = status && assert(list->count, 2);
+  display_pass_or_fail(status);
+  PRINT_STRING("should add the given number at the end of the list");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -58,5 +77,7 @@ int main(void)
   test_clear_list(list);
   test_search_node(list);
 
+  test_add_to_end(list);
+  
   return 0;
 }
