@@ -84,6 +84,25 @@ void test_add_to_start(List_ptr list)
   clear_list(list);
 }
 
+void test_add_unique(List_ptr list)
+{
+  PRINT_STRING("\nadd_unique");
+
+  int status = assert(add_unique(list, 1), Success);
+  status = status && assert(search_node(list, 1), 0);
+  status = status && assert(list->count, 1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should add the given number in the list if not exists");
+
+  status = assert(add_unique(list, 1), Failure);
+  status = status && assert(search_node(list, 1), 0);
+  status = status && assert(list->count, 1);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not add the given number in the list if exists");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -98,6 +117,7 @@ int main(void)
 
   test_add_to_end(list);
   test_add_to_start(list);
+  test_add_unique(list);
   
   return 0;
 }
