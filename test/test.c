@@ -103,6 +103,46 @@ void test_add_unique(List_ptr list)
   clear_list(list);
 }
 
+void test_insert_at(List_ptr list)
+{
+  add_to_end(list, 1);
+  add_to_end(list, 2);
+
+  PRINT_STRING("\ninsert_at");
+
+  int status = assert(insert_at(list, 3, 2), Success);
+  status = status && assert(search_node(list, 3), 2);
+  status = status && assert(list->count, 3);
+  display_pass_or_fail(status);
+  PRINT_STRING("should add the given number at the end of the list");
+
+  status = assert(insert_at(list, 0, 0), Success);
+  status = status && assert(search_node(list, 0), 0);
+  status = status && assert(list->count, 4);
+  display_pass_or_fail(status);
+  PRINT_STRING("should add the given number at the beginning of the list");
+
+  status = assert(insert_at(list, 6, 2), Success);
+  status = status && assert(search_node(list, 6), 2);
+  status = status && assert(list->count, 5);
+  display_pass_or_fail(status);
+  PRINT_STRING("should add the given number at the given position of the list");
+
+  status = assert(insert_at(list, 9, 9), Failure);
+  status = status && assert(search_node(list, 9), -1);
+  status = status && assert(list->count, 5);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not add the given number if the given position is below 0");
+
+  status = assert(insert_at(list, 9, -9), Failure);
+  status = status && assert(search_node(list, 9), -1);
+  status = status && assert(list->count, 5);
+  display_pass_or_fail(status);
+  PRINT_STRING("should not add the given number if the given position is above list count");
+
+  clear_list(list);
+}
+
 int main(void)
 {
   List_ptr list = create_list();
@@ -118,6 +158,7 @@ int main(void)
   test_add_to_end(list);
   test_add_to_start(list);
   test_add_unique(list);
-  
+  test_insert_at(list);
+
   return 0;
 }
